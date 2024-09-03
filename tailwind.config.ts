@@ -64,6 +64,7 @@ const config: Config = {
       },
       fontFamily: {
         libre: ["Libre Baskerville", "serif"],
+        roboto: ["Roboto Flex", "sans-serif"]
       },
     },
   },
