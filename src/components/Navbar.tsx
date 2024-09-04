@@ -14,12 +14,14 @@ const Navbar = () => {
   return (
     <nav className="w-full sticky flex items-center px-[120px] py-6 border-b border-2">
       <div className="flex justify-between items-center w-full">
-        <div className="flex items-center">
-          <Logo />
-          <p className="text-lg font-semibold from-[#79348D] to-[#1B1B1E] dark:to-[white] bg-clip-text text-transparent bg-gradient-to-r">
-            Abhinava Dance Company
-          </p>
-        </div>
+        <Link href={"/"}>
+          <div className="flex items-center">
+            <Logo />
+            <p className="text-lg font-semibold from-[#79348D] to-[#1B1B1E] dark:to-[white] bg-clip-text text-transparent bg-gradient-to-r">
+              Abhinava Dance Company
+            </p>
+          </div>
+        </Link>
         <div className="flex text-base">
           <ul className="flex items-center gap-8 text-[#313131] dark:text-gray-100">
             <Link href="/">Home</Link>
