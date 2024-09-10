@@ -8,11 +8,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search } from "lucide-react";
+import SearchPage from "./SearchPage";
+import ModeToggle from "./ModeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="w-full sticky flex items-center px-[120px] py-6 border-b border-2">
+    <nav className="w-full top-0 sticky flex items-center px-[120px] py-6 border-b border-2 bg-white dark:bg-black">
       <div className="flex justify-between items-center w-full">
         <Link href={"/"}>
           <div className="flex items-center">
@@ -23,7 +24,7 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="flex text-base">
-          <ul className="flex items-center gap-8 text-[#313131] dark:text-gray-100">
+          <ul className="flex items-center gap-8 text-[#313131] dark:text-gray-100 outline-none">
             <Link href="/">Home</Link>
             <DropdownMenu>
               <DropdownMenuTrigger
@@ -96,9 +97,8 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/contact">Contact</Link>
-            <div className="">
-              <Search className="text-[#79348D]" />
-            </div>
+            <SearchPage />
+            <ModeToggle />
           </ul>
         </div>
       </div>
