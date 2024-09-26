@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "./Logo";
+import { useState } from "react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -8,100 +8,202 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Logo from "./Logo";
 import SearchPage from "./SearchPage";
 import ModeToggle from "./ModeToggle";
 
+// Define links with dropdown menu items
+const links: { label: string; items?: string[] }[] = [
+  {
+    label: "About",
+    items: ["Artistic Directors", "Advisory Board", "Team", "Collaborators"],
+  },
+  {
+    label: "Events",
+    items: [
+      "Corporate Shows",
+      "Upcoming Performances",
+      "Productions",
+      "Special Events",
+      "Tours",
+      "Wall Of Fame",
+    ],
+  },
+  {
+    label: "Gurukul",
+    items: [
+      "Programmes Offered",
+      "Acharya's",
+      "Workshops",
+      "Students Feedback",
+      "Activities",
+    ],
+  },
+  {
+    label: "Achievements",
+    items: ["Awards", "Media", "Feedbacks"],
+  },
+  {
+    label: "Gallery",
+    items: ["Behind The Scene", "Shoots", "Goodies"],
+  },
+  {
+    label: "Support",
+    items: ["Support Now", "Book a Performance", "Buy Abhinava's Exclusive"],
+  },
+];
+
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState(""); // Keep track of the active link
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // Track opened dropdown
+
+  const handleClick = (link: string) => {
+    setActiveLink(link); // Set active link on click
+    setIsOpen(false); // Close mobile menu on click
+  };
+
+  const handleDropdown = (label: string) => {
+    if (openDropdown === label) {
+      setOpenDropdown(null); // Toggle off if already open
+    } else {
+      setOpenDropdown(label); // Open the dropdown
+    }
+  };
+
+  const linkClasses = (link: string) =>
+    link === activeLink ? "text-secondary" : "";
+
   return (
-    <nav className="w-full top-0 sticky flex items-center px-[120px] py-6 border-b border-2 bg-white dark:bg-black">
+    <nav className="w-full sticky top-0 z-50 flex items-center px-6 md:px-[120px] py-4 md:py-6 border-b border-2 bg-white dark:bg-black">
       <div className="flex justify-between items-center w-full">
-        <Link href={"/"}>
-          <div className="flex items-center">
+        {/* Logo */}
+        <Link href="/" onClick={() => handleClick("/")}>
+          <div className="flex items-center cursor-pointer">
             <Logo />
-            <p className="text-lg font-semibold from-[#79348D] to-[#1B1B1E] dark:to-[white] bg-clip-text text-transparent bg-gradient-to-r">
+            <p className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-secondary to-[#1B1B1E] dark:to-white">
               Abhinava Dance Company
             </p>
           </div>
         </Link>
-        <div className="flex text-base">
-          <ul className="flex items-center gap-8 text-[#313131] dark:text-gray-100 outline-none">
-            <Link href="/">Home</Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                className={`outline-none active:text-[#79348D]`}
+
+        {/* Navigation Links */}
+        <div className="hidden md:flex items-center gap-8 text-base">
+          <ul className="flex items-center gap-8">
+            <li>
+              <Link href="/" className={linkClasses("/")}>
+                Home
+              </Link>
+            </li>
+            {/* Dropdown Menus */}
+            {links.map(({ label, items }, index) => (
+              <li key={index}>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="outline-none active:text-[#79348D]">
+                    {label}
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {items?.map((item, idx) => (
+                      <DropdownMenuItem key={idx}>
+                        <Link
+                          href={`/${label.toLowerCase()}/${item
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}`}
+                          onClick={() => handleClick(item)}
+                          className={linkClasses(item)}
+                        >
+                          {item}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/contact"
+                className={linkClasses("/contact")}
+                onClick={() => handleClick("/contact")}
               >
-                About
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Artistic Directors</DropdownMenuItem>
-                <DropdownMenuItem>Advisory Board</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Collaborators</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="outline-none active:text-[#79348D]">
-                Events
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Corporate Shows</DropdownMenuItem>
-                <DropdownMenuItem>Upcoming Performances </DropdownMenuItem>
-                <DropdownMenuItem>Productions</DropdownMenuItem>
-                <DropdownMenuItem>Special Events</DropdownMenuItem>
-                <DropdownMenuItem>Tours</DropdownMenuItem>
-                <DropdownMenuItem>Wall Of Fame</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="outline-none active:text-[#79348D]">
-                Gurukul
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Programmes Offered</DropdownMenuItem>
-                <DropdownMenuItem>Acharya&apos;s</DropdownMenuItem>
-                <DropdownMenuItem>Workshops </DropdownMenuItem>
-                <DropdownMenuItem>Students Feedback</DropdownMenuItem>
-                <DropdownMenuItem>Activities</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="outline-none active:text-[#79348D]">
-                Achivements
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Awards</DropdownMenuItem>
-                <DropdownMenuItem>Media</DropdownMenuItem>
-                <DropdownMenuItem>Feedbacks</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="outline-none active:text-[#79348D]">
-                Gallery
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Behind The Scence</DropdownMenuItem>
-                <DropdownMenuItem>Shoots</DropdownMenuItem>
-                <DropdownMenuItem>Goodies</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="outline-none active:text-[#79348D]">
-                Support
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Support Now</DropdownMenuItem>
-                <DropdownMenuItem>Book a Performance</DropdownMenuItem>
-                <DropdownMenuItem>
-                  Buy Abhinava&apos;s Exclusive
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link href="/contact">Contact</Link>
+                Contact
+              </Link>
+            </li>
+
+            {/* Additional Components */}
             <SearchPage />
             <ModeToggle />
           </ul>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden block">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+            />
+          </svg>
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden absolute top-16 left-0 w-full bg-white dark:bg-black shadow-lg p-4">
+          <ul className="flex flex-col gap-4 text-[#313131] dark:text-gray-100">
+            <li>
+              <Link href="/" className={linkClasses("/")}>
+                Home
+              </Link>
+            </li>
+            {links.map(({ label, items }, index) => (
+              <li key={index}>
+                <button
+                  className="text-left w-full outline-none active:text-[#79348D]"
+                  onClick={() => handleDropdown(label)}
+                >
+                  {label}
+                </button>
+                {openDropdown === label && (
+                  <ul className="pl-4">
+                    {items?.map((item, idx) => (
+                      <li key={idx} className="py-1">
+                        <Link
+                          href={`/${label.toLowerCase()}/${item
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}`}
+                          onClick={() => handleClick(item)}
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/contact"
+                onClick={() => handleClick("/contact")}
+                className={linkClasses("/contact")}
+              >
+                Contact
+              </Link>
+            </li>
+            <SearchPage />
+            <ModeToggle />
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

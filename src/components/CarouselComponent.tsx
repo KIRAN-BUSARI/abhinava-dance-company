@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, FC, useState } from "react";
 import Image from "next/image";
+
 interface Image {
   id: number;
   image: string;
@@ -49,24 +50,25 @@ const CarouselComponent: FC<CarouselProps> = ({ images, delay = 2000 }) => {
   }, [delay, images.length]);
 
   return (
-    <div className="overflow-hidden rounded-[16px] w-[75%]">
+    <div className="overflow-hidden rounded-[16px] w-full max-w-[90%] lg:max-w-[75%]">
       <div
         className="flex transition-transform duration-500 ease-linear"
         ref={carouselRef}
       >
         {images.map((image) => (
-          <Image
-            key={image.id}
-            src={image.image}
-            alt={`Slide ${image.id}`}
-            className="w-full flex-shrink-0"
-            width={100}
-            height={100}
-          />
+          <div key={image.id} className="w-full flex-shrink-0">
+            <Image
+              src={image.image}
+              alt={`Slide ${image.id}`}
+              width={1000}
+              height={500}
+              quality={100}
+              priority={true}
+            />
+          </div>
         ))}
       </div>
-
-      <div className="flex space-x-5 mt-10 justify-center">
+      <div className="flex space-x-5 mt-5 justify-center">
         {images.map((_, index) => (
           <button
             key={index}

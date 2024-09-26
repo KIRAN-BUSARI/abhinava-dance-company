@@ -35,35 +35,27 @@ const pics = [
 
 function Hero() {
   return (
-    <section className="min-h-screen flex justify-center flex-col">
-      <div className="md:grid md:grid-cols-2">
-        <div className="flex flex-col md:place-content-center font-normal md:text-start text-center mt-5 md:mt-0">
-          <h1 className="text-[32px] lg:text-[35px] leading-[140%] mb-2 font-normal font-libre text-[#313131] dark:text-gray-100">
+    <section className="min-h-screen flex justify-center items-center font-libre">
+      <div className="grid grid-cols-12 justify-between">
+        <div className="col-span-6 flex flex-col justify-center items-center sm:items-start space-y-5">
+          <h1 className="text-balance text-center text-xl font-medium leading-8 tracking-[-1%] text-primary1 sm:mr-24 sm:text-start sm:text-[32px] sm:font-normal sm:leading-[44px]">
             Where Rhythm Meets Soul: A <br /> Journey Through Classical Dance
           </h1>
-          <div className="mb-4">
-            <p className="text-[#424242] dark:text-gray-100 text-[16px] leading-[160%] font-[24px] font-roboto">
-              Discover the elegance of Bharathnatyam and Kathak with <br />{" "}
-              Nirupama and Rajendra. Since founding the Abhinava Dance <br />{" "}
-              Company in 1994, they have been illuminating the world stage{" "}
-              <br /> with the grace and power of Indian classical dance.
-              Celebrate <br /> the art of movement and storytelling with us as
-              we continue to <br /> inspire and captivate audiences across the
-              globe.
-            </p>
-          </div>
-          <div className="flex space-x-4 justify-center lg:justify-start">
-            <button className="font-bold md:font-semibold text-[#FFFFFF] bg-[#79348D] px-6 py-2 rounded-lg font-roboto">
-              Book Performances
-            </button>
-          </div>
+          <p className="text-base leading-[30px] font-roboto text-balance">
+            Discover the elegance of Bharathnatyam and Kathak with Nirupama and
+            Rajendra. Since founding the Abhinava Dance Company in 1994, they
+            have been illuminating the world stage with the grace and power of
+            Indian classical dance. Celebrate the art of movement and
+            storytelling with us as we continue to inspire and captivate
+            audiences across the globe.
+          </p>
+          <button className="bg-[#793480] text-white px-6 py-3 rounded-lg">
+            Book Perfomances
+          </button>
         </div>
-        <div className="flex justify-end">
+        <div className="col-span-6 flex justify-end">
           <CarouselComponent images={pics} />
         </div>
-      </div>
-      <div className="text-[#79348D] animate-bounce flex justify-center">
-        <Link href="/about">{<ArrowDown size={30} />}</Link>
       </div>
     </section>
   );
