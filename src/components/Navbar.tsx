@@ -71,7 +71,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full sticky top-0 z-50 flex items-center px-4 md:px-[120px] py-4 md:py-6 border-b border-2 bg-white dark:bg-black">
+    <nav className="w-full sticky top-0 z-50 flex items-center px-4 md:px-[120px] py-4 md:py-6 border-b border-2 bg-white dark:bg-black text-primary">
       <div className="flex justify-between items-center w-full">
         {/* Logo */}
         <Link href="/">
