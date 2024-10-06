@@ -11,7 +11,8 @@ import {
 import Logo from "./Logo";
 import SearchPage from "./SearchPage";
 import ModeToggle from "./ModeToggle";
-
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 // Define links with dropdown menu items
 const links: { label: string; items?: string[] }[] = [
   {
@@ -55,11 +56,9 @@ const links: { label: string; items?: string[] }[] = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState(""); // Keep track of the active link
   const [openDropdown, setOpenDropdown] = useState<string | null>(null); // Track opened dropdown
-
-  const handleClick = (link: string) => {
-    setActiveLink(link); // Set active link on click
+  const pathname = usePathname();
+  const handleClick = () => {
     setIsOpen(false); // Close mobile menu on click
   };
 
@@ -71,15 +70,12 @@ const Navbar = () => {
     }
   };
 
-  const linkClasses = (link: string) =>
-    link === activeLink ? "text-secondary" : "";
-
   return (
-    <nav className="w-full sticky top-0 z-50 flex items-center px-6 md:px-[120px] py-4 md:py-6 border-b border-2 bg-white dark:bg-black">
+    <nav className="w-full sticky top-0 z-50 flex items-center px-4 md:px-[120px] py-4 md:py-6 border-b border-2 bg-white dark:bg-black">
       <div className="flex justify-between items-center w-full">
         {/* Logo */}
-        <Link href="/" onClick={() => handleClick("/")}>
-          <div className="flex items-center cursor-pointer">
+        <Link href="/">
+          <div className="flex items-center">
             <Logo />
             <p className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-secondary to-[#1B1B1E] dark:to-white">
               Abhinava Dance Company
@@ -88,10 +84,15 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-8 text-base">
-          <ul className="flex items-center gap-8">
+        <div className="hidden md:flex items-center text-base">
+          <ul className="flex items-center gap-5">
             <li>
-              <Link href="/" className={linkClasses("/")}>
+              <Link
+                href="/"
+                className={cn(
+                  pathname === "/" ? "text-secondary" : "text-primary"
+                )}
+              >
                 Home
               </Link>
             </li>
@@ -109,8 +110,11 @@ const Navbar = () => {
                           href={`/${label.toLowerCase()}/${item
                             .toLowerCase()
                             .replace(/\s+/g, "-")}`}
-                          onClick={() => handleClick(item)}
-                          className={linkClasses(item)}
+                          className={cn(
+                            pathname === `/${item}`
+                              ? "text-secondary"
+                              : "text-primary"
+                          )}
                         >
                           {item}
                         </Link>
@@ -123,8 +127,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/contact"
-                className={linkClasses("/contact")}
-                onClick={() => handleClick("/contact")}
+                className={cn(
+                  pathname === "/contact" ? "text-secondary" : "text-primary"
+                )}
               >
                 Contact
               </Link>
@@ -160,7 +165,12 @@ const Navbar = () => {
         <div className="md:hidden absolute top-16 left-0 w-full bg-white dark:bg-black shadow-lg p-4">
           <ul className="flex flex-col gap-4 text-[#313131] dark:text-gray-100">
             <li>
-              <Link href="/" className={linkClasses("/")}>
+              <Link
+                href="/"
+                className={cn(
+                  pathname === "/" ? "text-secondary" : "text-primary"
+                )}
+              >
                 Home
               </Link>
             </li>
@@ -180,7 +190,11 @@ const Navbar = () => {
                           href={`/${label.toLowerCase()}/${item
                             .toLowerCase()
                             .replace(/\s+/g, "-")}`}
-                          onClick={() => handleClick(item)}
+                          className={cn(
+                            pathname === `/${item}`
+                              ? "text-secondary"
+                              : "text-primary"
+                          )}
                         >
                           {item}
                         </Link>
@@ -193,14 +207,13 @@ const Navbar = () => {
             <li>
               <Link
                 href="/contact"
-                onClick={() => handleClick("/contact")}
-                className={linkClasses("/contact")}
+                className={cn(
+                  pathname === "/contact" ? "text-secondary" : "text-primary"
+                )}
               >
                 Contact
               </Link>
             </li>
-            <SearchPage />
-            <ModeToggle />
           </ul>
         </div>
       )}
