@@ -100,7 +100,13 @@ const Navbar = () => {
             {links.map(({ label, items }, index) => (
               <li key={index}>
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="outline-none active:text-[#79348D]">
+                  <DropdownMenuTrigger
+                    className={cn(
+                      pathname?.includes(`/${label.toLowerCase()}`)
+                        ? "text-secondary"
+                        : "text-primary"
+                    )}
+                  >
                     {label}
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
@@ -110,11 +116,6 @@ const Navbar = () => {
                           href={`/${label.toLowerCase()}/${item
                             .toLowerCase()
                             .replace(/\s+/g, "-")}`}
-                          className={cn(
-                            pathname === `/${item}`
-                              ? "text-secondary"
-                              : "text-primary"
-                          )}
                         >
                           {item}
                         </Link>
@@ -177,7 +178,11 @@ const Navbar = () => {
             {links.map(({ label, items }, index) => (
               <li key={index}>
                 <button
-                  className="text-left w-full outline-none active:text-[#79348D]"
+                  className={cn(
+                    pathname?.includes(`/${label.toLowerCase()}`)
+                      ? "text-secondary"
+                      : "text-primary"
+                  )}
                   onClick={() => handleDropdown(label)}
                 >
                   {label}
@@ -190,11 +195,6 @@ const Navbar = () => {
                           href={`/${label.toLowerCase()}/${item
                             .toLowerCase()
                             .replace(/\s+/g, "-")}`}
-                          className={cn(
-                            pathname === `/${item}`
-                              ? "text-secondary"
-                              : "text-primary"
-                          )}
                         >
                           {item}
                         </Link>
