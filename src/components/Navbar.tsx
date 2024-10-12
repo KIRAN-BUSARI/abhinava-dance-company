@@ -111,15 +111,17 @@ const Navbar = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     {items?.map((item, idx) => (
-                      <DropdownMenuItem key={idx}>
-                        <Link
-                          href={`/${label.toLowerCase()}/${item
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}`}
-                        >
+                      <Link
+                        key={idx}
+                        className="cursor-pointer"
+                        href={`/${label.toLowerCase()}/${item
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                      >
+                        <DropdownMenuItem className="cursor-pointer">
                           {item}
-                        </Link>
-                      </DropdownMenuItem>
+                        </DropdownMenuItem>
+                      </Link>
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -190,15 +192,14 @@ const Navbar = () => {
                 {openDropdown === label && (
                   <ul className="pl-4">
                     {items?.map((item, idx) => (
-                      <li key={idx} className="py-1">
-                        <Link
-                          href={`/${label.toLowerCase()}/${item
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}`}
-                        >
-                          {item}
-                        </Link>
-                      </li>
+                      <Link
+                        key={idx}
+                        href={`/${label.toLowerCase()}/${item
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                      >
+                        <li className="py-1">{item}</li>
+                      </Link>
                     ))}
                   </ul>
                 )}
