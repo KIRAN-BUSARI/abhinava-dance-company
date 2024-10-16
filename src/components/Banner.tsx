@@ -13,6 +13,7 @@ const Banner = () => {
               href={
                 "https://www.ncpamumbai.com/event/ncpa-nakshatra-dance-festival-2024-day-3/"
               }
+              target="_blank"
             >
               {" "}
               Click here
