@@ -98,7 +98,7 @@ const Navbar = () => {
             </li>
             {links.map(({ label, items }, index) => (
               <li key={index}>
-                <HoverCard>
+                <HoverCard openDelay={100} closeDelay={100}>
                   <HoverCardTrigger
                     className={cn(
                       "cursor-pointer",
