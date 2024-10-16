@@ -3,16 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import Logo from "./Logo";
 import SearchPage from "./SearchPage";
 import ModeToggle from "./ModeToggle";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+
 // Define links with dropdown menu items
 const links: { label: string; items?: string[] }[] = [
   {
@@ -96,35 +96,41 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            {/* Dropdown Menus */}
             {links.map(({ label, items }, index) => (
               <li key={index}>
-                <DropdownMenu>
-                  <DropdownMenuTrigger
+                <HoverCard>
+                  <HoverCardTrigger
                     className={cn(
+                      "cursor-pointer",
                       pathname?.includes(`/${label.toLowerCase()}`)
                         ? "text-secondary"
                         : "text-primary"
                     )}
                   >
                     {label}
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    {items?.map((item, idx) => (
-                      <Link
-                        key={idx}
-                        className="cursor-pointer"
-                        href={`/${label.toLowerCase()}/${item
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
-                      >
-                        <DropdownMenuItem className="cursor-pointer">
-                          {item}
-                        </DropdownMenuItem>
-                      </Link>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                  </HoverCardTrigger>
+                  <HoverCardContent>
+                    <div>
+                      {items?.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          className="cursor-pointer"
+                          href={`/${label.toLowerCase()}/${item
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}`}
+                        >
+                          <p
+                            className={cn(
+                              "relative flex cursor-pointer select-none items-center px-2 py-1.5 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-[#79348D] hover:text-white"
+                            )}
+                          >
+                            {item}
+                          </p>
+                        </Link>
+                      ))}
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
               </li>
             ))}
             <li>
