@@ -45,9 +45,9 @@ const SearchPage = () => {
             <p className="text-lg text-center">
               {" "}
               This page is for the usage of Abhinava Dance School Faculty.
-              Please click{" "}
+              Please{" "}
               <Link href="#" className="text-[#793480] underline">
-                here
+                click here
               </Link>{" "}
               to proceed.{" "}
             </p>
