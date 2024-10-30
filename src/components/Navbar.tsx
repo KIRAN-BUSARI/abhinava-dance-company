@@ -56,9 +56,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null); // Track opened dropdown
   const { pathname } = useLocation();
-  const handleClick = () => {
-    setIsOpen(false); // Close mobile menu on click
-  };
 
   const handleDropdown = (label: string) => {
     if (openDropdown === label) {
