@@ -221,6 +221,9 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          <div className="gap-4">
+            <ModeToggle />
+          </div>
         </div>
       )}
     </nav>
