@@ -71,7 +71,7 @@ const Navbar = () => {
         <Link to="/">
           <div className="flex items-center">
             <Logo />
-            <p className="bg-gradient-to-r from-secondary to-[#1B1B1E] bg-clip-text text-lg font-medium text-transparent dark:to-white">
+            <p className="bg-gradient-to-r from-secondary to-[#1B1B1E] bg-clip-text text-2xl font-medium text-transparent dark:to-white">
               Abhinava Dance Company
             </p>
           </div>
@@ -79,7 +79,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="hidden items-center text-base md:flex">
-          <ul className="flex items-center gap-5">
+          <ul className="flex items-center gap-5 text-lg">
             <li>
               <Link
                 to="/"

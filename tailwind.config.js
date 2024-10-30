@@ -76,7 +76,7 @@ module.exports = {
         "heroImage": "url('/src/assets/mandala.png')"
       },
       fontFamily: {
-        libre: ["futura", "serif"],
+        libre: ["Libre Baskerville", "serif"],
       },
       textColor: {
         primary: "#313131",
