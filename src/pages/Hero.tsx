@@ -31,7 +31,7 @@ function Hero() {
           <h1 className="text-center text-xl font-medium leading-8 tracking-[-1%] text-primary1 dark:text-white sm:text-left sm:text-[32px] sm:leading-[44px]">
             Where Rhythm Meets Soul: <br /> A Journey Through Classical Dance
           </h1>
-          <p className="font-roboto text-center text-base leading-[30px] sm:text-left sm:text-lg">
+          <p className="text-center text-base font-normal leading-[30px] sm:text-left sm:text-lg">
             Discover the elegance of Bharathnatyam and Kathak with Nirupama and
             Rajendra. Since founding the Abhinava Dance Company in 1994, they
             have been illuminating the world stage with the grace and power of

@@ -6,7 +6,6 @@ import {
 } from '@/components/ui/hover-card';
 import Logo from './Logo';
 import SearchPage from './SearchPage';
-import { ModeToggle } from './ModeToggle';
 import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
@@ -72,7 +71,7 @@ const Navbar = () => {
         <Link to="/">
           <div className="flex items-center">
             <Logo />
-            <p className="bg-gradient-to-r from-secondary to-[#1B1B1E] bg-clip-text text-lg font-semibold text-transparent dark:to-white">
+            <p className="bg-gradient-to-r from-secondary to-[#1B1B1E] bg-clip-text text-lg font-medium text-transparent dark:to-white">
               Abhinava Dance Company
             </p>
           </div>
@@ -145,7 +144,6 @@ const Navbar = () => {
 
             {/* Additional Components */}
             <SearchPage />
-            <ModeToggle />
           </ul>
         </div>
 
@@ -176,7 +174,9 @@ const Navbar = () => {
               <Link
                 to="/"
                 className={cn(
-                  pathname === '/' ? 'text-secondary' : 'text-primary',
+                  pathname === '/'
+                    ? 'text-secondary'
+                    : 'font-medium text-primary dark:text-white',
                 )}
               >
                 Home
@@ -188,7 +188,7 @@ const Navbar = () => {
                   className={cn(
                     pathname?.includes(`/${label.toLowerCase()}`)
                       ? 'text-secondary'
-                      : 'text-primary',
+                      : 'font-medium text-primary',
                   )}
                   onClick={() => handleDropdown(label)}
                 >
@@ -214,16 +214,15 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 className={cn(
-                  pathname === '/contact' ? 'text-secondary' : 'text-primary',
+                  pathname === '/contact'
+                    ? 'text-secondary'
+                    : 'font-medium text-primary dark:text-white',
                 )}
               >
                 Contact
               </Link>
             </li>
           </ul>
-          <div className="gap-4">
-            <ModeToggle />
-          </div>
         </div>
       )}
     </nav>
